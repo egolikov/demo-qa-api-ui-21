@@ -3,8 +3,11 @@ package qa.demo.tests;
 import com.codeborne.selenide.Configuration;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
+import qa.demo.api.LoginApi;
 
 public class TestBase {
+
+    LoginApi authorizationApi = new LoginApi();
 
     @BeforeAll
     static void setUp() {

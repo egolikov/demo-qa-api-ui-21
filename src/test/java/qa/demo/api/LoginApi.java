@@ -11,10 +11,10 @@ import static qa.demo.specs.LoginSpec.successLoginResponseSpec;
 public class LoginApi {
 
     @Step("Успешная авторизация")
-    public static LoginResponseModel successLogin(String userName, String password) {
+    public static LoginResponseModel successAuthorization() {
         LoginBodyModel authorizationData = new LoginBodyModel();
-        authorizationData.setUserName(userName);
-        authorizationData.setPassword(password);
+        authorizationData.setUserName("egolikov");
+        authorizationData.setPassword("Egolikov*0009");
 
         return given(successLoginRequestSpec)
                 .body(authorizationData)
