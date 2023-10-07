@@ -18,7 +18,9 @@ public class DeleteBookFromProfileTest extends TestBase {
     @Test
     @DisplayName("Удаление добавленной книги из профиля")
     void deleteBookFromProfileTest() {
+
         LoginResponseModel loginResponse = authorizationApi.login(credentials);
+
         IsbnModel isbnModel = new IsbnModel();
         isbnModel.setIsbn("9781593277574");
         List<IsbnModel> isbnList = new ArrayList<>();
