@@ -12,5 +12,5 @@ public class LoginResponseModel {
     String expires;
     @JsonProperty("created_date")
     String createdDate;
-    boolean isActive;
+    String isActive;
 }

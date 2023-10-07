@@ -1,16 +1,17 @@
 package qa.demo.tests;
 
 import com.codeborne.selenide.Configuration;
+import qa.demo.api.AuthorizationApi;
+import qa.demo.api.BooksApi;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
-import qa.demo.api.LoginApi;
 
 public class TestBase {
-
-    LoginApi authorizationApi = new LoginApi();
+    AuthorizationApi authorizationApi = new AuthorizationApi();
+    BooksApi booksApi = new BooksApi();
 
     @BeforeAll
-    static void setUp() {
+    static void settingURI() {
         Configuration.baseUrl = "https://demoqa.com";
         RestAssured.baseURI = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
