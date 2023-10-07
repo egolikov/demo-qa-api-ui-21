@@ -8,7 +8,7 @@ import qa.demo.models.LoginResponseModel;
 import org.junit.jupiter.api.Test;
 import qa.demo.pages.UserProfilePage;
 
-import static qa.demo.tests.TestData.credentials;
+import static qa.demo.tests.TestData.*;
 
 public class DeleteBookFromProfileTest extends TestBase {
 
@@ -18,7 +18,7 @@ public class DeleteBookFromProfileTest extends TestBase {
 
         LoginResponseModel loginResponse = authorizationApi.login(credentials);
 
-        IsbnModel isbnModel = booksApi.createIsbnModel("9781593277574");
+        IsbnModel isbnModel = booksApi.createIsbnModel(getISBN());
         AddBooksListModel booksList = booksApi.createAddBooksListModel(loginResponse, isbnModel);
         DeleteBookModel deleteBookModel = booksApi.createDeleteBookModel(loginResponse, isbnModel);
 
