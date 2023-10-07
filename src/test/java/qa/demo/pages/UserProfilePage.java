@@ -9,7 +9,6 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class UserProfilePage {
 
-    @Step("Открытие страницы с полученными Cookies")
     public static void openUserProfileWithCookies(String userId, String token, String expires) {
         open("/favicon.ico");
         getWebDriver().manage().addCookie(new Cookie("userID", userId));
@@ -17,8 +16,9 @@ public class UserProfilePage {
         getWebDriver().manage().addCookie(new Cookie("expires", expires));
     }
 
-    @Step("Проверка отсутствия в списке удаленной книги")
+    @Step("Проверка отсутствия в списке профиля удаленной книги")
     public static void checkDisappearBook(String bookId) {
+        open("/profile");
         $("[id='" + bookId + "']").shouldBe(disappear);
     }
 }
