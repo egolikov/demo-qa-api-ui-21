@@ -37,6 +37,6 @@ public class DeleteBookFromProfileTest extends TestBase {
         booksApi.deleteOneBook(loginResponse, deleteBookModel);
 
         UserProfilePage.openUserProfileWithCookies(loginResponse.getUserId(), loginResponse.getToken(), loginResponse.getExpires());
-        UserProfilePage.checkDisappearBook("see-book-Git Pocket Guide");
+        UserProfilePage.checkDisappearBook("see-book-Understanding ECMAScript 6");
     }
 }
