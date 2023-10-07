@@ -46,14 +46,12 @@ public class BooksApi {
                 .spec(successDeleteBookResponseSpec);
     }
 
-    @Step("Создание объекта IsbnModel")
     public IsbnModel createIsbnModel(String isbn) {
         IsbnModel isbnModel = new IsbnModel();
         isbnModel.setIsbn(isbn);
         return isbnModel;
     }
 
-    @Step("Создание объекта AddBooksListModel")
     public AddBooksListModel createAddBooksListModel(LoginResponseModel loginResponse, IsbnModel isbnModel) {
         AddBooksListModel booksList = new AddBooksListModel();
         booksList.setUserId(loginResponse.getUserId());
@@ -63,7 +61,6 @@ public class BooksApi {
         return booksList;
     }
 
-    @Step("Создание объекта DeleteBookModel")
     public DeleteBookModel createDeleteBookModel(LoginResponseModel loginResponse, IsbnModel isbnModel) {
         DeleteBookModel deleteBookModel = new DeleteBookModel();
         deleteBookModel.setUserId(loginResponse.getUserId());
