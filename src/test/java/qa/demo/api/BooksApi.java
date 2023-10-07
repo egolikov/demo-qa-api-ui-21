@@ -1,13 +1,12 @@
 package qa.demo.api;
 
 import io.qameta.allure.Step;
-import qa.demo.models.AddBooksListModel;
-import qa.demo.models.AddBooksResponseModel;
-import qa.demo.models.DeleteBookModel;
-import qa.demo.models.LoginResponseModel;
+import qa.demo.models.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
 import static qa.demo.specs.BookSpec.*;
 
 public class BooksApi {
@@ -45,5 +44,30 @@ public class BooksApi {
                 .delete("/BookStore/v1/Book")
                 .then()
                 .spec(successDeleteBookResponseSpec);
+    }
+
+    @Step("Создание объекта IsbnModel")
+    public IsbnModel createIsbnModel(String isbn) {
+        IsbnModel isbnModel = new IsbnModel();
+        isbnModel.setIsbn(isbn);
+        return isbnModel;
+    }
+
+    @Step("Создание объекта AddBooksListModel")
+    public AddBooksListModel createAddBooksListModel(LoginResponseModel loginResponse, IsbnModel isbnModel) {
+        AddBooksListModel booksList = new AddBooksListModel();
+        booksList.setUserId(loginResponse.getUserId());
+        List<IsbnModel> isbnList = new ArrayList<>();
+        isbnList.add(isbnModel);
+        booksList.setCollectionOfIsbns(isbnList);
+        return booksList;
+    }
+
+    @Step("Создание объекта DeleteBookModel")
+    public DeleteBookModel createDeleteBookModel(LoginResponseModel loginResponse, IsbnModel isbnModel) {
+        DeleteBookModel deleteBookModel = new DeleteBookModel();
+        deleteBookModel.setUserId(loginResponse.getUserId());
+        deleteBookModel.setIsbn(isbnModel.getIsbn());
+        return deleteBookModel;
     }
 }

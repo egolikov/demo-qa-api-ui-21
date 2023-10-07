@@ -8,9 +8,6 @@ import qa.demo.models.LoginResponseModel;
 import org.junit.jupiter.api.Test;
 import qa.demo.pages.UserProfilePage;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static qa.demo.tests.TestData.credentials;
 
 public class DeleteBookFromProfileTest extends TestBase {
@@ -21,18 +18,9 @@ public class DeleteBookFromProfileTest extends TestBase {
 
         LoginResponseModel loginResponse = authorizationApi.login(credentials);
 
-        IsbnModel isbnModel = new IsbnModel();
-        isbnModel.setIsbn("9781593277574");
-        List<IsbnModel> isbnList = new ArrayList<>();
-        isbnList.add(isbnModel);
-
-        AddBooksListModel booksList = new AddBooksListModel();
-        booksList.setUserId(loginResponse.getUserId());
-        booksList.setCollectionOfIsbns(isbnList);
-
-        DeleteBookModel deleteBookModel = new DeleteBookModel();
-        deleteBookModel.setIsbn("9781593277574");
-        deleteBookModel.setUserId(loginResponse.getUserId());
+        IsbnModel isbnModel = booksApi.createIsbnModel("9781593277574");
+        AddBooksListModel booksList = booksApi.createAddBooksListModel(loginResponse, isbnModel);
+        DeleteBookModel deleteBookModel = booksApi.createDeleteBookModel(loginResponse, isbnModel);
 
         booksApi.deleteAllBooks(loginResponse);
         booksApi.addBook(loginResponse, booksList);
