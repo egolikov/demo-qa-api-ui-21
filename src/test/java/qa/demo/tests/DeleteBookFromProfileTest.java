@@ -1,6 +1,7 @@
 package qa.demo.tests;
 
 import org.junit.jupiter.api.DisplayName;
+import qa.demo.helpers.WithLogin;
 import qa.demo.models.AddBooksListModel;
 import qa.demo.models.DeleteBookModel;
 import qa.demo.models.IsbnModel;
@@ -12,6 +13,7 @@ import static qa.demo.tests.TestData.*;
 
 public class DeleteBookFromProfileTest extends TestBase {
 
+    @WithLogin
     @Test
     @DisplayName("Удаление добавленной книги из профиля")
     void deleteBookFromProfileTest() {
@@ -26,7 +28,6 @@ public class DeleteBookFromProfileTest extends TestBase {
         booksApi.addBook(loginResponse, booksList);
         booksApi.deleteOneBook(loginResponse, deleteBookModel);
 
-        UserProfilePage.openUserProfileWithCookies(loginResponse.getUserId(), loginResponse.getToken(), loginResponse.getExpires());
         UserProfilePage.checkDisappearBook("see-book-Understanding ECMAScript 6");
     }
 }
