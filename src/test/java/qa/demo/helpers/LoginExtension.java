@@ -13,16 +13,10 @@ public class LoginExtension implements BeforeEachCallback {
     private final String token;
     private final String expires;
 
-    public LoginExtension(String userId, String token, String expires) {
-        this.userId = userId;
-        this.token = token;
-        this.expires = expires;
-    }
-
     public LoginExtension() {
-        this.userId = "defaultUserId"; // Установите значение по умолчанию, если нужно
-        this.token = "defaultToken"; // Установите значение по умолчанию, если нужно
-        this.expires = "defaultExpires"; // Установите значение по умолчанию, если нужно
+        this.userId = "";
+        this.token = "";
+        this.expires = "";
     }
 
     @Override
